@@ -2,8 +2,10 @@ import { SimulationNodeDatum } from 'd3';
 
 export type Annotation = {
   label: string;
-  description: string;
-  moreInformation: string | null;
+  title: string | undefined;
+  description: string | undefined;
+  icon: string| undefined;
+  moreInformation: string | undefined;
 };
 
 export type TenkeTank = {

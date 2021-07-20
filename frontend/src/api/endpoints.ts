@@ -1,5 +1,17 @@
-import {Node, Triplet} from '../types/databaseTypes';
+import {Node, Triplet, Annotation} from '../types/databaseTypes';
 import api from './api';
+
+export const getAnnontations = async (nodeId: string): Promise<Array<Annotation>> => {
+  try {
+    const data: Array<Annotation> = await api.GET(
+      `ontologies/annontations/${encodeURIComponent(nodeId)}`,
+    );
+    return data;
+  } catch (e) {
+    console.log(e);
+    return [{ label: '', description: '', moreInformation: '', title: '', icon: '' }];
+  }
+};
 
 export const getTriplets = async (nodeId: string): Promise<Array<Triplet>> => {
   try {
