@@ -62,6 +62,7 @@ export default class {
   private readonly edgeSvg: SubSvgSelection;
   private onExpandNode: (node: GraphNode) => void;
   private onSelectNode: (node: GraphNode) => void;
+  private onSelectInformationNode: (node: GraphNode) => void;
   private width: number;
   private height: number;
   private nodes: Array<GraphNode>;
@@ -81,6 +82,7 @@ export default class {
     initialNode: GraphNode,
     onExpandNode: (node: GraphNode) => void,
     onSelectNode: (node: GraphNode) => void,
+    onSelectInformationNode: (node: GraphNode) => void,
   ) {
     this.svg = d3.select(svg).on('click', this.hideNodeMenu);
     this.edgeSvg = this.svg.append('g');
@@ -93,6 +95,7 @@ export default class {
     this.unfilteredEdges = [];
     this.onExpandNode = onExpandNode;
     this.onSelectNode = onSelectNode;
+    this.onSelectInformationNode = onSelectInformationNode;
     this.initZoom();
     this.forceSimulation = this.initForceSimulation();
     this.fpsCounter = new FpsCounter();
@@ -319,7 +322,7 @@ export default class {
       menuG,
       -nodeMenuBtnRadius * 3.75,
       () => {
-        this.onSelectNode(node);
+        this.onSelectInformationNode(node);
       },
       'icons/goToDetailView.svg',
     );
@@ -786,5 +789,8 @@ export default class {
   // Called by the Graph component to change the callback called when a node is expanded
   updateOnExpandCallback = (callback: (node: GraphNode) => void) => {
     this.onExpandNode = callback;
+  };
+  updateOnInformationCallback = (callback: (node: GraphNode) => void) => {
+    this.onSelectInformationNode = callback;
   };
 }

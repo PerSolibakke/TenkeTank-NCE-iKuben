@@ -2,14 +2,18 @@ import { Box, IconButton } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { GiContract, GiExpand } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTriplets } from '../../api/endpoints';
+import { getAnnontations, getTriplets } from '../../api/endpoints';
 import GraphSimulation from '../../d3/GraphSimulation';
 import useWindowDimensions from '../../hooks/useWindowsDimensions';
 import { setError } from '../../state/reducers/apiErrorReducer';
 import { toggleFullscreen } from '../../state/reducers/fullscreenReducer';
-import { selectNode } from '../../state/reducers/databaseReducer';
+import { ToggleInformationBox } from '../../state/reducers/informationBoxReducer';
+import { selectNode, selectInformationNode } from '../../state/reducers/databaseReducer';
 import { RootState } from '../../state/store';
-import { GraphNode } from '../../types/databaseTypes';
+import { Annotation, GraphNode } from '../../types/databaseTypes';
+import GraphDrawer from '../atoms/GraphDrawer';
+
+
 
 type GraphProps = {
   unlockAllNodes: boolean;
@@ -23,17 +27,18 @@ const Graph: React.FC<GraphProps> = ({
   const { height, width } = useWindowDimensions();
   const svgRef = useRef<SVGSVGElement>(null);
   const selectedNode = useSelector((state: RootState) => state.database.selectedNode);
+  const selectedInformationNode = useSelector((state: RootState) => state.database.selectedInformationNode);
+  const [annontations, setAnnontations] = useState<Array<Annotation>>();
   const dispatch = useDispatch();
   const [simulation, setSimulation] = useState<GraphSimulation>();
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
+  const { isInformationBox } = useSelector((state: RootState) => state.informationBoxStatus);
   const [hasInitialized, setHasInitialized] = useState(false);
 
   const loadData = async (node: GraphNode) => {
-    console.log(node);
     if (!simulation) return;
     const ontologies = await getTriplets(node.id);
     simulation.addData(ontologies, node);
-    console.log(ontologies);
   };
   // callback triggered when expand button is clicked in node menu
   const onExpandNode = (node: GraphNode): void => {
@@ -41,9 +46,16 @@ const Graph: React.FC<GraphProps> = ({
   };
 
   // callback triggered when information button is clicked in node menu
-  const onSelectNode = (node: GraphNode): void => {
+  const onSelectNode = (node: GraphNode): void=> {
     dispatch(selectNode(node));
   };
+
+  const onSelectInformationNode = async (node: GraphNode): Promise<void>=> {
+    await dispatch(selectInformationNode(node));
+    if(!selectedInformationNode) {return}
+    setAnnontations(await getAnnontations(selectedInformationNode.id))
+    await dispatch(ToggleInformationBox());
+      };
 
   const createNewGraphSimulation = () => {
     if (!svgRef || !svgRef.current || !selectedNode) return;
@@ -55,6 +67,7 @@ const Graph: React.FC<GraphProps> = ({
         selectedNode,
         onExpandNode,
         onSelectNode,
+        onSelectInformationNode,
       ),
     );
   };
@@ -62,6 +75,11 @@ const Graph: React.FC<GraphProps> = ({
   useEffect(() => {
     if (simulation) simulation.updateOnExpandCallback(onExpandNode);
   }, [onExpandNode]);
+
+  useEffect(() => {
+    if (simulation) simulation.updateOnInformationCallback(onSelectInformationNode);
+  }, [onSelectInformationNode]);
+
 
   // Useeffect to initialize the graph simulation and to add more data as it is received from the API
   useEffect(() => {
@@ -88,6 +106,7 @@ const Graph: React.FC<GraphProps> = ({
   }, [edgeLabelsVisible]);
 
   return (
+    <>
     <Box
       position="relative"
       bg="white"
@@ -109,6 +128,12 @@ const Graph: React.FC<GraphProps> = ({
         icon={isFullscreen ? <GiContract size="40" /> : <GiExpand size="40" />}
       />
     </Box>
+      {!isInformationBox && (
+        <>
+          <GraphDrawer informationNode ={annontations}  />
+        </>
+      )}
+      </>
   );
 };
 

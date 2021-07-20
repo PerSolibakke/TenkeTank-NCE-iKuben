@@ -5,6 +5,7 @@ import { RootState } from '../../state/store';
 import { D3Edge } from '../../types/d3/simulation';
 import { GraphEdge, GraphNode } from '../../types/databaseTypes';
 import Graph from '../atoms/Graph';
+import GraphDrawer from '../atoms/GraphDrawer';
 
 // component wrapping the Graph, Graphtoolbar and GraphDescriptions. Also creates nodeFilter and edgeFilter callbacks
 const GraphContainer: React.FC = () => {

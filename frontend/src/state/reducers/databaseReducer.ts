@@ -1,14 +1,17 @@
-import { Node } from '../../types/databaseTypes';
+import { GraphNode, Node } from '../../types/databaseTypes';
 import {
   CLEAR_SELECTED_NODE,
+  CLEAR_SELECTED_INFORMATION_NODE,
   OntologyState,
   OntologyStateAction,
   SELECT_NODE,
+  SELECT_INFORMATION_NODE,
 } from '../../types/redux/databaseTypes';
 
 
 const defaultState: OntologyState = {
   selectedNode: undefined,
+  selectedInformationNode: undefined,
 };
 
 const ontologyReducer = (
@@ -21,8 +24,21 @@ const ontologyReducer = (
         ...state,
         selectedNode: action.payload,
       };
+    case SELECT_INFORMATION_NODE:
+      return {
+        ...state,
+        selectedInformationNode: action.payload,
+      };  
     case CLEAR_SELECTED_NODE:
-      return defaultState;
+      return {
+        ... state,
+        selectedNode : undefined,
+      };
+    case CLEAR_SELECTED_INFORMATION_NODE:
+      return {
+        ... state,
+        selectedInformationNode : undefined,
+      };    
     default:
       return state;
   }
@@ -35,5 +51,13 @@ export const selectNode = (node: Node): OntologyStateAction => ({
 
 
 export const clearSelectedNode = (): OntologyStateAction => ({ type: 'CLEAR_SELECTED_NODE' });
+
+export const selectInformationNode = (node: GraphNode): OntologyStateAction => ({
+  type: 'SELECT_INFORMATION_NODE',
+  payload: node,
+});
+
+
+export const clearSelectedInformationNode = (): OntologyStateAction => ({ type: 'CLEAR_SELECTED_INFORMATION_NODE' });
 
 export default ontologyReducer;
