@@ -24,6 +24,7 @@ import {
       }
       UNION {
           ${fullClassName}   ?Predicate ?Object . 
+          OPTIONAL {?Object rdfs:label ?ObjectLabel}
         filter exists {
           ${fullClassName} sesame:directType ?Object  . 
         }
@@ -31,6 +32,7 @@ import {
     UNION {
       ${fullClassName}   ?Predicate ?Object . 
       Filter(?Predicate = rdfs:subClassOf)
+      OPTIONAL {?Object rdfs:label ?ObjectLabel}
       FILTER NOT EXISTS { ?otherSub rdfs:subClassOf ?Object . 
         ${fullClassName}  rdfs:subClassOf ?otherSub .
                            FILTER (?otherSub != ${fullClassName} )
@@ -53,6 +55,7 @@ import {
            UNION {
     ?Subject ?Predicate  ${fullClassName}.
    Filter(?Predicate = rdfs:subClassOf)
+   OPTIONAL {?Subject rdfs:label ?SubjectLabel}
    FILTER NOT EXISTS { ?Subject rdfs:subClassOf ?otherSub . 
                          ?otherSub rdfs:subClassOf  ${fullClassName} .
                         FILTER (?otherSub !=  ${fullClassName})
