@@ -8,9 +8,11 @@ import Footer from './components/atoms/Footer';
 import Graphpage from './components/pages/Graphpage';
 import frontpage from './components/pages/frontpage';
 import NotFoundPage from './components/pages/NotFound';
+import Navbar from './components/atoms/NavBar';
 
 const App: React.FC = () => (
   <ChakraProvider>
+        <Navbar/>
     <Provider store={store}>
       <Flex
         bg="gray.50"
