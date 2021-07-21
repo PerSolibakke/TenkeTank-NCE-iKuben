@@ -6,6 +6,14 @@ export interface Entity {
   name: string;
 }
 
+export type Annontation = {
+  label: string;
+  icon: string| null;
+  description: string | null;
+  title: string | null;
+  moreInformation: string | null;
+  citation: string | null;
+};
 
 export interface Node extends Entity {
   type: string;

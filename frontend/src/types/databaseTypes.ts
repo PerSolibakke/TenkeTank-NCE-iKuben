@@ -6,6 +6,7 @@ export type Annotation = {
   description: string | undefined;
   icon: string| undefined;
   moreInformation: string | undefined;
+  citation: string | undefined;
 };
 
 export type TenkeTank = {

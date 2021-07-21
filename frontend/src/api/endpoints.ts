@@ -9,7 +9,7 @@ export const getAnnontations = async (nodeId: string): Promise<Array<Annotation>
     return data;
   } catch (e) {
     console.log(e);
-    return [{ label: '', description: '', moreInformation: '', title: '', icon: '' }];
+    return [{ label: '', description: '', moreInformation: '', title: '', icon: '' , citation: ''}];
   }
 };
 

@@ -28,7 +28,7 @@ const ErrorModal: React.FC = () => {
     setOpen(apiError != null && apiError.message != null && apiError.message.length > 0);
   }, [apiError]);
 
-  const errorHeader = apiError instanceof ApiError ? `API Error ${apiError.status}` : 'Feil';
+  const errorHeader = apiError instanceof ApiError ? `API Error ${apiError.status}` : 'Something went wrong';
 
   return (
     <Modal isOpen={open} onClose={onClose}>

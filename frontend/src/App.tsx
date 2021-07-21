@@ -4,7 +4,6 @@ import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import store from './state/store';
 import ErrorModal from './components/atoms/ErrorModal';
-import Footer from './components/atoms/Footer';
 import Graphpage from './components/pages/Graphpage';
 import frontpage from './components/pages/frontpage';
 import NotFoundPage from './components/pages/NotFound';
@@ -31,7 +30,6 @@ const App: React.FC = () => (
               <Route component={NotFoundPage} />
             </Switch>
           </Box>
-          <Footer />
         </Router>
       </Flex>
     </Provider>

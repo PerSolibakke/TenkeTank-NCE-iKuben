@@ -1,18 +1,13 @@
-import { Link,Flex, Image, Button, Box, Spacer } from '@chakra-ui/react';
+import { Link,Flex, Text, Button, Box, Spacer } from '@chakra-ui/react';
 import React from 'react';
 
 const Navbar: React.FC = () => {
   return (
-    <Box w="100%">
-  <Flex bg="gray" p={2} color="white">
-     <Image
-      src={'https://ikuben-tenketank.herokuapp.com/assets/ikuben-logo-cb4d35beb7ede6fa21e1c5c2c5f875efbb9780ca346dd516b788bc8a8879654b.png'}
-      borderRadius="lg"
-      overflow="hidden"
-      alt={'NCE iKuben'}
-      objectFit="cover"
-      href="/"
-    />
+    <Box w="100%" >
+  <Flex bg="#6A199F" p={2} color="white">
+  <Link href="/" fontSize= 'lg'  as="em">Ontology of TenkeTank for young leaders NCE | iKuben. </Link>
+  <Spacer/>
+  <Link href="/" fontSize= 'lg' as="em">About </Link>
     </Flex>
     </Box>
 );

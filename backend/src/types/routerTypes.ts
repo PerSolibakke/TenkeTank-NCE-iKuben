@@ -13,11 +13,11 @@
  */
 
  import { Request, Response } from 'express';
- import {Node, Triplet } from './databaseTypes';
+ import {Node, Triplet, Annontation } from './databaseTypes';
  
  
- type ClassIdParams = {
-   classId: string;
+ type IdParams = {
+   id: string;
  };
  
  export type EmptyRequest = Request;
@@ -28,9 +28,11 @@
  export type AnyResponse = Response<any, any>;
 
  
- export type ClassIdRequest = Request<ClassIdParams>;
+ export type IdRequest = Request<IdParams>;
  
  export type NodeArrayResponse = Response<Array<Node>>;
+
+ export type AnnontationResponse = Response<Annontation>;
  
  export type OntologyArrayResponse = Response<Array<Triplet>>;
  
