@@ -14,7 +14,7 @@ const defaultState: OntologyState = {
   selectedInformationNode: undefined,
 };
 
-const ontologyReducer = (
+const databaseReducer = (
   state: OntologyState = defaultState,
   action: OntologyStateAction,
 ): OntologyState => {
@@ -60,4 +60,4 @@ export const selectInformationNode = (node: GraphNode): OntologyStateAction => (
 
 export const clearSelectedInformationNode = (): OntologyStateAction => ({ type: 'CLEAR_SELECTED_INFORMATION_NODE' });
 
-export default ontologyReducer;
+export default databaseReducer;

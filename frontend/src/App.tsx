@@ -6,12 +6,12 @@ import store from './state/store';
 import ErrorModal from './components/atoms/ErrorModal';
 import Graphpage from './components/pages/Graphpage';
 import frontpage from './components/pages/frontpage';
+import Aboutpage from './components/pages/Aboutpage';
 import NotFoundPage from './components/pages/NotFound';
 import Navbar from './components/atoms/NavBar';
 
 const App: React.FC = () => (
   <ChakraProvider>
-        <Navbar/>
     <Provider store={store}>
       <Flex
         bg="gray.50"
@@ -22,11 +22,13 @@ const App: React.FC = () => (
         color="gray.800"
       >
         <Router>
+        <Navbar/>
           <ErrorModal />
           <Box flex="1">
             <Switch>
             <Route path="/" exact component={frontpage} />
               <Route path="/graphpage" exact component={Graphpage} />
+              <Route path="/about" exact component={Aboutpage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Box>

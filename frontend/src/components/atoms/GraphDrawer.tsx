@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Image, Text, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure, Link} from '@chakra-ui/react';
+import { Button, Image, Text, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure, Link, Box} from '@chakra-ui/react';
 import { ToggleInformationBox } from '../../state/reducers/informationBoxReducer';
 import { clearSelectedInformationNode } from '../../state/reducers/databaseReducer';
 import { setError } from '../../state/reducers/apiErrorReducer';
@@ -37,16 +37,24 @@ type GraphDrawerProps = {
   
             <DrawerBody>
 
-            <Image 
-                  src={informationNode[0].icon}
-                     borderRadius="lg"
-                   overflow="hidden"
-                    alt="Connection with link address failed"
-                    h = "300px"
-                    w ="250px"
-                     object-fit="cover" 
-                     marginBottom= '5px'
-                     />
+                          {informationNode[0].icon &&
+            <Box fontSize="lg" mt="2" >
+                 {informationNode[0].icon ?
+                          <Image 
+                          src={informationNode[0].icon}
+                             borderRadius="lg"
+                           overflow="hidden"
+                            alt="Connection with link address failed"
+                            h = "300px"
+                            w ="250px"
+                             object-fit="cover" 
+                             marginBottom= '5px'
+                             />
+                 : (
+                  ' '
+                )   }
+              </Box>
+                }
                   <Text fontSize="lg" as="em" marginBottom= '5px'>
                   {informationNode[0].title
                 ? 'Position: ' + informationNode[0].title
