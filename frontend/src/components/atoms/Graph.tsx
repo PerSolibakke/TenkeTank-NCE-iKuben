@@ -108,7 +108,6 @@ const Graph: React.FC<GraphProps> = ({
     <>
     <Box
       position="relative"
-
       backgroundImage="url('https://www.teahub.io/photos/full/71-710634_sea-black-and-white-ocean-moored-buoy-hd.jpg')"
       bgPosition="center"
       bgRepeat="no-repeat"

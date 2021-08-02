@@ -15,7 +15,6 @@ type GraphDrawerProps = {
   }: GraphDrawerProps ) => {  
     const btnRef = React.useRef()  as React.MutableRefObject<HTMLInputElement> | undefined;
     const dispatch = useDispatch();
-    console.log(informationNode);
     if (!informationNode || informationNode[0].label == '') {
         dispatch(setError(new Error('Database disconnected')));
         return (<> </>);
@@ -33,10 +32,9 @@ type GraphDrawerProps = {
           <DrawerOverlay />
           <DrawerContent >
             <DrawerCloseButton />
-            <DrawerHeader centerContent >{informationNode[0].label}</DrawerHeader>
+            <DrawerHeader >{informationNode[0].label}</DrawerHeader>
   
             <DrawerBody>
-
                           {informationNode[0].icon &&
             <Box fontSize="lg" mt="2" >
                  {informationNode[0].icon ?
