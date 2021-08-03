@@ -61,7 +61,6 @@ export default class {
   private readonly nodeSvg: SubSvgSelection;
   private readonly edgeSvg: SubSvgSelection;
   private onExpandNode: (node: GraphNode) => void;
-  private onSelectNode: (node: GraphNode) => void;
   private onSelectInformationNode: (node: GraphNode) => void;
   private width: number;
   private height: number;
@@ -81,7 +80,6 @@ export default class {
     height: number,
     initialNode: GraphNode,
     onExpandNode: (node: GraphNode) => void,
-    onSelectNode: (node: GraphNode) => void,
     onSelectInformationNode: (node: GraphNode) => void,
   ) {
     this.svg = d3.select(svg).on('click', this.hideNodeMenu);
@@ -94,7 +92,6 @@ export default class {
     this.edges = [];
     this.unfilteredEdges = [];
     this.onExpandNode = onExpandNode;
-    this.onSelectNode = onSelectNode;
     this.onSelectInformationNode = onSelectInformationNode;
     this.initZoom();
     this.forceSimulation = this.initForceSimulation();

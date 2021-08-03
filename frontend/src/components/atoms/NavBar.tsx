@@ -1,6 +1,6 @@
 import { Link,Flex, Box, Spacer } from '@chakra-ui/react';
 import React from 'react';
-import { Link as RouteLink, useHistory } from 'react-router-dom';
+import { Link as RouteLink } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   return (

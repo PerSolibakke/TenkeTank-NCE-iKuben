@@ -49,6 +49,8 @@ import {
   UNION {
     ?Subject ?Predicate  ${fullClassName} .
     OPTIONAL {?Subject rdfs:label ?SubjectLabel}
+    Optional {?Subject sesame:directType ?Type.
+                    ?Type rdfs:label ?TypeLabel}
    filter exists {
         ?Subject  sesame:directType ${fullClassName} . 
    }

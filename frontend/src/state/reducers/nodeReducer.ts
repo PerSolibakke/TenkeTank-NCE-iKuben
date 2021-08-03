@@ -6,7 +6,7 @@ import {
   OntologyStateAction,
   SELECT_NODE,
   SELECT_INFORMATION_NODE,
-} from '../../types/redux/databaseTypes';
+} from '../../types/redux/nodeTypes';
 
 
 const defaultState: OntologyState = {
@@ -14,7 +14,7 @@ const defaultState: OntologyState = {
   selectedInformationNode: undefined,
 };
 
-const databaseReducer = (
+const nodeReducer = (
   state: OntologyState = defaultState,
   action: OntologyStateAction,
 ): OntologyState => {
@@ -60,4 +60,4 @@ export const selectInformationNode = (node: GraphNode): OntologyStateAction => (
 
 export const clearSelectedInformationNode = (): OntologyStateAction => ({ type: 'CLEAR_SELECTED_INFORMATION_NODE' });
 
-export default databaseReducer;
+export default nodeReducer;

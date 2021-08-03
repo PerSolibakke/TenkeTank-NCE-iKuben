@@ -1,18 +1,17 @@
 import {
     addEntityToNullFields,
-    filterDuplicatePredicates,
     isNotLoopTriplet,
     mapIdToNode,
-    mapRecordToOntology,
+    mapRecordToTriplet,
   } from '../common/database';
   import { ApiError } from '../types/errorTypes';
   import { Triplet, Record } from '../types/databaseTypes';
   import DB from './index';
   import getRelations from './queries/getTriplets';
   
-  const isRelevantOntology = (ontology: Triplet): boolean => {
-    if (!ontology || !ontology.Predicate || !(ontology.Subject || ontology.Object)) return false;
-    const node = ontology.Subject || ontology.Object;
+  const isRelevantOntology = (triplet: Triplet): boolean => {
+    if (!triplet || !triplet.Predicate || !(triplet.Subject || triplet.Object)) return false;
+    const node = triplet.Subject || triplet.Object;
     if (!node || node.id.includes('node')) return false;
     return true;
   };
@@ -26,7 +25,7 @@ import {
     const response = await DB.query(query, { transform: 'toJSON' });
     const records = response.records as Array<Record>;
     const ontologies = records
-      .map(mapRecordToOntology)
+      .map(mapRecordToTriplet)
       .map((ont) => addEntityToNullFields(ont, node))
       .filter(isRelevantOntology)
       .filter(isNotLoopTriplet)
