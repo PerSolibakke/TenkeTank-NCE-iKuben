@@ -21,9 +21,6 @@ export interface Node extends Entity {
 
 export interface Edge extends Entity {
 }
-export interface InitalNode extends Node {
-  title: string;
-}
 
 export type Triplet = {
   Subject: Node | null;

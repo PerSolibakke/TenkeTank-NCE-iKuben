@@ -6,7 +6,7 @@ import GraphSimulation from '../../d3/GraphSimulation';
 import useWindowDimensions from '../../hooks/useWindowsDimensions';
 import { setError } from '../../state/reducers/apiErrorReducer';
 import { ToggleInformationBox } from '../../state/reducers/informationBoxReducer';
-import { selectNode, selectInformationNode } from '../../state/reducers/databaseReducer';
+import { selectInformationNode } from '../../state/reducers/nodeReducer';
 import { RootState } from '../../state/store';
 import { Annotation, GraphNode } from '../../types/databaseTypes';
 import GraphDrawer from '../atoms/GraphDrawer';
@@ -24,7 +24,7 @@ const Graph: React.FC<GraphProps> = ({
 }: GraphProps) => {
   const { height, width } = useWindowDimensions();
   const svgRef = useRef<SVGSVGElement>(null);
-  const selectedNode = useSelector((state: RootState) => state.database.selectedNode);
+  const selectedNode = useSelector((state: RootState) => state.node.selectedNode);
   const [annontations, setAnnontations] = useState<Array<Annotation>>();
   const dispatch = useDispatch();
   const [simulation, setSimulation] = useState<GraphSimulation>();
@@ -41,15 +41,11 @@ const Graph: React.FC<GraphProps> = ({
     loadData(node);
   };
 
-  // callback triggered when information button is clicked in node menu
-  const onSelectNode = (node: GraphNode): void=> {
-    dispatch(selectNode(node));
-  };
-
   const setDrawer = async (node: GraphNode): Promise<void>=> {
     setAnnontations(await getAnnontations(node.id))
   };
 
+  // callback triggered when information button is clicked in node menu, promting a drawer.
   const onSelectInformationNode = async (node: GraphNode): Promise<void>=> {
     dispatch(selectInformationNode(node));
     await setDrawer(node)
@@ -65,7 +61,6 @@ const Graph: React.FC<GraphProps> = ({
         0.4 * height,
         selectedNode,
         onExpandNode,
-        onSelectNode,
         onSelectInformationNode,
       ),
     );

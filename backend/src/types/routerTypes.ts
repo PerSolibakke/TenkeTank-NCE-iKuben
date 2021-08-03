@@ -34,7 +34,7 @@
 
  export type AnnontationResponse = Response<Annontation>;
  
- export type OntologyArrayResponse = Response<Array<Triplet>>;
+ export type TripletArrayResponse = Response<Array<Triplet>>;
  
- export type SingleOntologyResponse = Response<Triplet>;
+ export type SingleTripletResponse = Response<Triplet>;
  

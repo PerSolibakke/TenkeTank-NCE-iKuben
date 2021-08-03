@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Image, Text, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure, Link, Box} from '@chakra-ui/react';
 import { ToggleInformationBox } from '../../state/reducers/informationBoxReducer';
-import { clearSelectedInformationNode } from '../../state/reducers/databaseReducer';
+import { clearSelectedInformationNode } from '../../state/reducers/nodeReducer';
 import { setError } from '../../state/reducers/apiErrorReducer';
 import { useDispatch } from 'react-redux';
 import { Annotation } from '../../types/databaseTypes';
@@ -9,7 +9,7 @@ import { isUrl } from '../../common/regex';
 type GraphDrawerProps = {
     informationNode: Array<Annotation> | undefined
   };
-  
+  // component generating the information assosiated to nodes. 
   const GraphDrawer: React.FC<GraphDrawerProps> = ({
       informationNode,
   }: GraphDrawerProps ) => {  

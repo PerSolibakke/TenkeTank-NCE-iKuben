@@ -56,7 +56,7 @@ export const mapIdToEdge = (id: string): Edge | null => {
   };
 };
 
-export const mapRecordToOntology = (record: Record): Triplet => {
+export const mapRecordToTriplet = (record: Record): Triplet => {
   let subject = record.Subject ? mapIdToNode(record.Subject) : null;
   if (subject && record.SubjectLabel) {
     if (record.TypeLabel)

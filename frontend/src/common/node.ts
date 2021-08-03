@@ -1,11 +1,9 @@
 import {
   Edge,
-  GraphNode,
   Node,
   Prefix,
   TenkeTank,
 } from '../types/databaseTypes';
-import { D3Edge } from '../types/d3/simulation';
 
 export const mapPrefixNameToNode = (
   prefix: string,
