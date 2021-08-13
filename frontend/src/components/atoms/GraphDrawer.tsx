@@ -74,7 +74,7 @@ type GraphDrawerProps = {
                 {'  '}
                 {isUrl(informationNode[0].moreInformation) ? (
                   <Link href={informationNode[0].moreInformation} isExternal fontWeight="bold">
-                    {informationNode[0].moreInformation}
+                    External link
                   </Link>
                 ) : (
                   informationNode[0].moreInformation

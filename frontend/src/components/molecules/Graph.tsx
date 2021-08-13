@@ -34,6 +34,7 @@ const Graph: React.FC<GraphProps> = ({
   const loadData = async (node: GraphNode) => {
     if (!simulation) return;
     const ontologies = await getTriplets(node.id);
+    console.log(ontologies)
     simulation.addData(ontologies, node);
   };
   // callback triggered when expand button is clicked in node menu
