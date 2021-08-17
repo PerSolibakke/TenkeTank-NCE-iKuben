@@ -7,5 +7,5 @@ TenkeTank for young leaders in the participating companies under 35 years. The t
 This tecknology stack aims to visualise the possiblites arrising from interdisipliary collaboration. Along with providing a better overview for contributors aswell as for outsiders .
 
 ## Acknowledgements
-This tecknology stack reuses parts of the graphical logic used in: 'https://github.com/ntnu-informatikk-2021/SDG-ontology-visualizer' following the GPL3 lisence.  This logic is based on d3 ('https://d3js.org/')
+This tecknology stack reuses parts of the graphical logic used in: 'https://github.com/ntnu-informatikk-2021/SDG-ontology-visualizer', which is project in association with Trondheim Muncipality and NTNU, following the GPL3 lisence.  This logic is based on d3 ('https://d3js.org/').
 
