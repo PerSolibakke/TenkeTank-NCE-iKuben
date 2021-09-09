@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy Backend
+    name: Build and Deploy Frontend
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
@@ -24,7 +24,7 @@ jobs:
         # deploy to Azure Web App.
         npm install
         npm run build --if-present
-      working-directory: backend
+      working-directory: frontend
     - name: Log in with Azure
       uses: azure/login@v1
       with:
